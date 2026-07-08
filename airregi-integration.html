@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>エアレジ連携について | クマちゃんシステム</title>
+    <meta
+      name="description"
+      content="ストックマートのクマちゃんシステムとAirレジをAPI連携する考え方。閉店後の売上データ自動収集、在庫更新、粗利集計、freee・税理士資料までをわかりやすく整理します。"
+    />
+    <link rel="icon" href="./assets/stockmart-bear-logo-transparent.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700;800;900&family=Noto+Sans+JP:wght@500;700;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./system-proposal-v2.css?v=20260704-airregi" />
+    <link rel="stylesheet" href="./airregi-integration.css?v=20260704-airregi" />
+  </head>
+  <body>
+    <main class="sys-page airregi-page">
+      <header class="sys-topbar">
+        <a class="sys-brand" href="./index.html" aria-label="ストックマート デモトップへ">
+          <img src="./assets/stockmart-bear-logo-transparent.png" alt="ストックマートのクマちゃんロゴ" />
+          <span>
+            <small>Stockmart automation system</small>
+            <strong>クマちゃんシステム</strong>
+          </span>
+        </a>
+        <nav class="sys-tabs" aria-label="画面切替">
+          <a href="./index.html">仕入れ指数</a>
+          <a href="./ocr.html">在庫管理</a>
+          <a href="./system-proposal.html">クマちゃん</a>
+          <a class="is-active" href="./airregi-integration.html" aria-current="page">エアレジ連携</a>
+        </nav>
+      </header>
+
+      <section class="air-hero" aria-labelledby="air-title">
+        <figure class="air-hero-image">
+          <img src="./assets/airregi-integration-hero.png" alt="閉店後にAirレジAPI、商品マスター、売上履歴、会計資料をクマちゃんシステムへつなぐ夜間自動処理のイメージ" />
+        </figure>
+        <div class="air-hero-copy">
+          <p class="hero-ai-message">エアレジ連携について</p>
+          <p class="eyebrow">2026年7月4日時点の公式仕様確認</p>
+          <h1 id="air-title"><span class="phrase">売上データはAPIで。</span><span class="phrase">閉店後に自動収集。</span></h1>
+          <p class="air-lead">毎日の運用でCSVを出す前提は外します。Airレジのデータ連携APIで取引情報・入出金情報・精算情報を夜間に取得し、在庫、粗利、税理士資料へ自動でつなげます。</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#night-work">夜の作業を見る</a>
+            <a class="button secondary" href="#official-screens">公式画面を見る</a>
+          </div>
+        </div>
+        <div class="air-hero-points" aria-label="連携の要点">
+          <article><strong>売上データ</strong><span>APIで自動収集</span></article>
+          <article><strong>閉店後</strong><span>夜間バッチで更新</span></article>
+          <article><strong>CSV作業</strong><span>毎日は不要</span></article>
+          <article><strong>商品設定</strong><span>初期・変更時だけ確認</span></article>
+        </div>
+      </section>
+
+      <section class="section air-summary" aria-labelledby="summary-title">
+        <div class="section-head">
+          <p class="eyebrow">最初の結論</p>
+          <h2 id="summary-title"><span class="phrase">毎日の作業は、</span><span class="phrase">自動で回す。</span></h2>
+        </div>
+        <div class="air-route-grid">
+          <article>
+            <span>01</span>
+            <h3>売上を自動取得</h3>
+            <p>閉店後にAirレジAPIから取引情報、入出金情報、精算情報を取得します。</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>在庫と粗利へ反映</h3>
+            <p>売れた数量を在庫に反映し、仕入原価、税率、包材費から粗利を出します。</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>商品設定は初期だけ</h3>
+            <p>商品名、JAN、税率、SKU対応は導入時と変更時に確認。日々の売上回収には使いません。</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="official-screens" class="section official-screens" aria-labelledby="screen-title">
+        <div class="section-head">
+          <p class="eyebrow">Airレジ公式画面で見る</p>
+          <h2 id="screen-title"><span class="phrase">毎日触る画面を、</span><span class="phrase">減らす。</span></h2>
+        </div>
+        <div class="screen-list">
+          <article>
+            <figure>
+              <img src="./assets/airregi-official-api-auth.png" alt="Airレジのデータ連携API画面で認証情報をコピーする公式画面例" loading="lazy" decoding="async" />
+              <figcaption>公式ヘルプ画面例: データ連携API</figcaption>
+            </figure>
+            <div>
+              <p class="screen-label">API設定</p>
+              <h3>最初に一度つなぐ</h3>
+              <p>店舗ごとにAPI利用をオン。認証情報をクマちゃん側へ設定し、夜間自動取得の準備をします。</p>
+            </div>
+          </article>
+          <article>
+            <figure>
+              <img src="./assets/airregi-official-sales-csv.png" alt="Airレジの商品別売上画面で商品単位の売上CSVをダウンロードする公式画面例" loading="lazy" decoding="async" />
+              <figcaption>公式ヘルプ画面例: 商品別売上画面</figcaption>
+            </figure>
+            <div>
+              <p class="screen-label">確認用</p>
+              <h3>手動CSVは通常使わない</h3>
+              <p>商品別売上画面は確認用。日々の売上回収はAPI自動取得に寄せ、CSVダウンロード作業をなくします。</p>
+            </div>
+          </article>
+          <article>
+            <figure>
+              <img src="./assets/airregi-official-product-csv.png" alt="Airレジバックオフィスの商品設定画面で商品をCSVで編集する公式画面例" loading="lazy" decoding="async" />
+              <figcaption>公式ヘルプ画面例: 商品をCSVで編集する</figcaption>
+            </figure>
+            <div>
+              <p class="screen-label">初期設定</p>
+              <h3>商品マスターの確認用</h3>
+              <p>商品名、JAN、税率、売価の初期確認や一括変更時だけ使います。毎日の運用作業ではありません。</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="night-work" class="section night-work" aria-labelledby="night-title">
+        <div class="section-head">
+          <p class="eyebrow">夜の自動処理として説明する</p>
+          <h2 id="night-title"><span class="phrase">閉店後は、</span><span class="phrase">APIが回収。</span></h2>
+        </div>
+        <div class="night-flow" aria-label="Airレジ連携の夜作業">
+          <article>
+            <span>1</span>
+            <strong>Airレジを締める</strong>
+            <p>当日の会計と精算を確定。ここだけ店舗側の通常作業です。</p>
+          </article>
+          <article>
+            <span>2</span>
+            <strong>APIで売上取得</strong>
+            <p>取引情報、入出金情報、精算情報をクマちゃんが自動取得します。</p>
+          </article>
+          <article>
+            <span>3</span>
+            <strong>在庫と粗利を更新</strong>
+            <p>小分け原価、税率、包材費を反映して利益を確認します。</p>
+          </article>
+          <article>
+            <span>4</span>
+            <strong>翌日仕入れ候補</strong>
+            <p>イベント、天気、販売実績から仕入れ候補を出します。</p>
+          </article>
+          <article>
+            <span>5</span>
+            <strong>freee・税理士資料</strong>
+            <p>仕入、売上、棚卸、証憑を月次で見やすく整理します。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section data-design" aria-labelledby="design-title">
+        <div class="section-head">
+          <p class="eyebrow">クマちゃん側の設計</p>
+          <h2 id="design-title"><span class="phrase">Airレジは販売、</span><span class="phrase">クマちゃんは原価と在庫。</span></h2>
+        </div>
+        <div class="data-grid">
+          <article>
+            <h3>Airレジから受ける</h3>
+            <ul>
+              <li>商品名、売価、税率</li>
+              <li>JAN・バーコード</li>
+              <li>取引情報、売上データ</li>
+              <li>入出金情報、精算情報</li>
+            </ul>
+          </article>
+          <article>
+            <h3>クマちゃんで持つ</h3>
+            <ul>
+              <li>コストコ商品コード</li>
+              <li>仕入原価、小分け原価</li>
+              <li>自社SKU、Airレジ商品対応</li>
+              <li>棚卸、粗利、税理士資料</li>
+            </ul>
+          </article>
+          <article>
+            <h3>まず決めるルール</h3>
+            <ul>
+              <li>JANを必ず登録する商品</li>
+              <li>セット・小分け商品のSKU</li>
+              <li>軽減税率と通常税率の扱い</li>
+              <li>API取得を何時に回すか</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section api-plan" aria-labelledby="api-title">
+        <div class="api-main">
+          <p class="eyebrow">API連携の扱い</p>
+          <h2 id="api-title"><span class="phrase">毎日のCSV作業は</span><span class="phrase">なくせる。</span></h2>
+          <p>Airレジのデータ連携APIは、取引情報、入出金情報、精算情報の連携が対象です。閉店後に自動取得すれば、毎日の売上CSVダウンロード作業は不要になります。</p>
+        </div>
+        <div class="api-cards">
+          <article>
+            <small>Phase 1</small>
+            <strong>API接続</strong>
+            <span>店舗ごとにAPI利用をオンにし、夜間取得の設定を行う。</span>
+          </article>
+          <article>
+            <small>Phase 2</small>
+            <strong>夜間自動取得</strong>
+            <span>閉店後に売上・入出金・精算データを自動で取り込む。</span>
+          </article>
+          <article>
+            <small>Phase 3</small>
+            <strong>資料自動化</strong>
+            <span>在庫、粗利、税率別集計、freee向け資料へつなげる。</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="section source-section" aria-labelledby="source-title">
+        <div class="section-head">
+          <p class="eyebrow">公式確認元</p>
+          <h2 id="source-title"><span class="phrase">確認すべき公式ページ。</span></h2>
+        </div>
+        <div class="source-list">
+          <a href="https://faq.airregi.jp/hc/ja/articles/48202752451353-API%E3%81%A7%E5%90%84%E7%A8%AE%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E3%81%A8%E3%83%87%E3%83%BC%E3%82%BF%E9%80%A3%E6%90%BA%E3%81%97%E3%81%A6%E5%88%A9%E7%94%A8%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95" target="_blank" rel="noreferrer">APIで各種システムとデータ連携して利用する方法</a>
+          <a href="https://faq.airregi.jp/hc/ja/articles/202856694-%E5%95%86%E5%93%81%E5%88%A5%E5%A3%B2%E4%B8%8A%E3%81%AE%E7%A2%BA%E8%AA%8D%E6%96%B9%E6%B3%95" target="_blank" rel="noreferrer">商品別売上の確認方法</a>
+          <a href="https://faq.airregi.jp/hc/ja/articles/19287077375257-%E5%95%86%E5%93%81%E3%82%92CSV%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%A7%E4%B8%80%E6%8B%AC%E7%99%BB%E9%8C%B2-%E7%B7%A8%E9%9B%86%E3%81%99%E3%82%8B" target="_blank" rel="noreferrer">商品CSVは初期設定・変更時の確認用</a>
+        </div>
+      </section>
+
+      <section class="section final-section" aria-labelledby="final-title">
+        <p class="eyebrow">Next Action</p>
+        <h2 id="final-title"><span class="phrase">まずはAPIで、</span><span class="phrase">1日分を自動取得。</span></h2>
+        <p>閉店後の取引情報、入出金情報、精算情報を1日分取得できれば、在庫、粗利、税理士資料までの自動化精度を確認できます。</p>
+        <a class="button final-button" href="./system-proposal.html">クマちゃんシステムへ戻る</a>
+      </section>
+    </main>
+  </body>
+</html>

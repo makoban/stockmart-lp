@@ -1,0 +1,468 @@
+.airregi-page {
+  background:
+    linear-gradient(180deg, rgba(255, 226, 111, 0.16), transparent 430px),
+    #f6f2e7;
+}
+
+.airregi-page p,
+.airregi-page li {
+  line-break: normal;
+  text-wrap: pretty;
+}
+
+.air-hero {
+  position: relative;
+  display: grid;
+  min-height: 880px;
+  padding: 128px calc((100vw - min(1180px, calc(100vw - 32px))) / 2) 48px;
+  overflow: hidden;
+  background: #111512;
+}
+
+.air-hero-image {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+}
+
+.air-hero-image::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background:
+    linear-gradient(90deg, rgba(17, 21, 18, 0.9) 0%, rgba(17, 21, 18, 0.66) 40%, rgba(17, 21, 18, 0.18) 72%, rgba(17, 21, 18, 0.02) 100%),
+    linear-gradient(180deg, rgba(17, 21, 18, 0.08), rgba(17, 21, 18, 0.62));
+}
+
+.air-hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.air-hero-copy {
+  position: relative;
+  z-index: 2;
+  align-self: center;
+  width: min(690px, calc(100vw - 32px));
+  padding: 70px 0 78px;
+  color: #fff;
+}
+
+.air-hero-copy .eyebrow,
+.air-hero-copy .air-lead {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.air-hero-copy h1 {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  font-family: "M PLUS Rounded 1c", "Noto Sans JP", sans-serif;
+  font-size: 60px;
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: 0;
+  text-wrap: balance;
+}
+
+.air-lead {
+  max-width: 610px;
+  margin: 22px 0 0;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.85;
+}
+
+.air-hero-points {
+  position: relative;
+  z-index: 2;
+  align-self: end;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  width: min(1180px, calc(100vw - 32px));
+}
+
+.air-hero-points article {
+  min-height: 108px;
+  padding: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 22px 70px rgba(17, 21, 18, 0.2);
+}
+
+.air-hero-points strong {
+  display: block;
+  color: var(--green);
+  font-family: "M PLUS Rounded 1c", "Noto Sans JP", sans-serif;
+  font-size: 25px;
+  font-weight: 900;
+  line-height: 1.2;
+}
+
+.air-hero-points span {
+  display: block;
+  margin-top: 8px;
+  color: #465049;
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.air-summary .section-head,
+.official-screens .section-head,
+.night-work .section-head,
+.data-design .section-head,
+.source-section .section-head {
+  max-width: 860px;
+}
+
+.air-route-grid,
+.data-grid,
+.api-cards {
+  display: grid;
+  gap: 14px;
+}
+
+.air-route-grid {
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 28px;
+}
+
+.air-route-grid article,
+.data-grid article,
+.api-cards article,
+.night-flow article {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: var(--shadow);
+}
+
+.air-route-grid article {
+  min-height: 230px;
+  padding: 24px;
+}
+
+.air-route-grid span,
+.night-flow span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  color: #fff;
+  background: var(--green);
+  font-weight: 900;
+}
+
+.air-route-grid h3,
+.screen-list h3,
+.data-grid h3 {
+  margin-top: 16px;
+  font-family: "M PLUS Rounded 1c", "Noto Sans JP", sans-serif;
+  font-size: 26px;
+  font-weight: 900;
+  line-height: 1.25;
+  word-break: keep-all;
+}
+
+.air-route-grid p,
+.screen-list p,
+.api-main p,
+.night-flow p {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-weight: 700;
+  line-height: 1.72;
+}
+
+.screen-list {
+  display: grid;
+  gap: 18px;
+  margin-top: 28px;
+}
+
+.screen-list article {
+  display: grid;
+  grid-template-columns: minmax(0, 1.18fr) minmax(300px, 0.82fr);
+  gap: 24px;
+  align-items: center;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: var(--shadow);
+}
+
+.screen-list figure {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgba(12, 111, 79, 0.14);
+  border-radius: 8px;
+  background: #eef5ef;
+}
+
+.screen-list img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: top left;
+}
+
+.screen-list figcaption {
+  padding: 10px 12px;
+  color: #5d6760;
+  font-size: 12px;
+  font-weight: 800;
+  background: #fff;
+}
+
+.screen-label {
+  display: inline-flex;
+  min-height: 34px;
+  align-items: center;
+  padding: 0 12px;
+  border-radius: 999px;
+  color: #fff;
+  background: var(--green);
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.night-flow {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.night-flow article {
+  padding: 18px;
+}
+
+.night-flow strong {
+  display: block;
+  margin-top: 14px;
+  font-family: "M PLUS Rounded 1c", "Noto Sans JP", sans-serif;
+  font-size: 19px;
+  font-weight: 900;
+  line-height: 1.35;
+}
+
+.data-grid {
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 28px;
+}
+
+.data-grid article {
+  padding: 24px;
+}
+
+.data-grid ul {
+  display: grid;
+  gap: 10px;
+  padding: 0;
+  margin: 16px 0 0;
+  list-style: none;
+}
+
+.data-grid li {
+  position: relative;
+  padding-left: 18px;
+  color: #465049;
+  font-weight: 800;
+  line-height: 1.6;
+}
+
+.data-grid li::before {
+  position: absolute;
+  top: 0.72em;
+  left: 0;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--green);
+  content: "";
+}
+
+.api-plan {
+  display: grid;
+  grid-template-columns: minmax(300px, 0.78fr) minmax(0, 1.22fr);
+  gap: 28px;
+  align-items: start;
+}
+
+.api-main {
+  padding: 28px;
+  border-radius: 8px;
+  color: #fff;
+  background:
+    linear-gradient(135deg, rgba(12, 111, 79, 0.95), rgba(17, 21, 18, 0.92)),
+    var(--green);
+  box-shadow: var(--shadow);
+}
+
+.api-main .eyebrow,
+.api-main p {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.api-main h2 {
+  color: #fff;
+  font-size: 38px;
+}
+
+.api-cards article {
+  padding: 22px;
+}
+
+.api-cards small {
+  color: var(--green);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.api-cards strong {
+  display: block;
+  margin-top: 8px;
+  font-family: "M PLUS Rounded 1c", "Noto Sans JP", sans-serif;
+  color: var(--green);
+  font-size: 30px;
+  font-weight: 900;
+  line-height: 1.15;
+}
+
+.api-cards span {
+  display: block;
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.65;
+}
+
+.source-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.source-list a {
+  display: flex;
+  align-items: center;
+  min-height: 62px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--green);
+  background: #fff;
+  font-weight: 900;
+  line-height: 1.45;
+  text-decoration: none;
+  box-shadow: var(--shadow);
+}
+
+@media (max-width: 1080px) {
+  .air-hero-points,
+  .air-route-grid,
+  .data-grid,
+  .night-flow {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .screen-list article,
+  .api-plan {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .air-hero {
+    grid-template-columns: minmax(0, 1fr);
+    min-height: auto;
+    padding: 0 10px 26px;
+    background: #f6f2e7;
+  }
+
+  .air-hero-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+  }
+
+  .air-hero-image::after {
+    background: linear-gradient(180deg, rgba(17, 21, 18, 0.04), rgba(17, 21, 18, 0.18));
+  }
+
+  .air-hero-image img {
+    height: auto;
+    aspect-ratio: 16 / 11;
+    object-position: 45% center;
+  }
+
+  .air-hero-copy {
+    width: 100%;
+    padding: 22px 0 0;
+    color: var(--ink);
+  }
+
+  .air-hero-copy .eyebrow,
+  .air-hero-copy .air-lead {
+    color: #26302a;
+  }
+
+  .air-hero-copy h1 {
+    font-size: 34px;
+    line-height: 1.15;
+  }
+
+  .air-lead {
+    margin-top: 16px;
+    font-size: 15px;
+    line-height: 1.75;
+  }
+
+  .air-hero-points,
+  .air-route-grid,
+  .data-grid,
+  .night-flow,
+  .source-list {
+    grid-template-columns: 1fr;
+  }
+
+  .air-hero-points {
+    width: 100%;
+    margin-top: 16px;
+  }
+
+  .air-hero-points article {
+    min-height: auto;
+  }
+
+  .air-hero-points strong {
+    font-size: 24px;
+  }
+
+  .screen-list article {
+    padding: 14px;
+  }
+
+  .screen-list img {
+    aspect-ratio: 4 / 3;
+  }
+
+  .api-main {
+    padding: 24px;
+  }
+
+  .api-main h2 {
+    font-size: 30px;
+    line-height: 1.28;
+  }
+}

@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>クマちゃんシステム | 競合の追随を許さないAI業務自動化</title>
+    <meta
+      name="description"
+      content="ストックマート向けのクマちゃんシステム。AIシステム化で、コスト削減、従業員負担軽減、間違い防止、競合流入の防止、店舗数拡大まで、かんたん操作で1つにつなげます。"
+    />
+    <link rel="icon" href="./assets/stockmart-bear-logo-transparent.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700;800;900&family=Noto+Sans+JP:wght@500;700;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./system-proposal-v2.css?v=20260703-visualcopy3" />
+  </head>
+  <body>
+    <main class="sys-page">
+      <header class="sys-topbar">
+        <a class="sys-brand" href="./index.html" aria-label="ストックマート デモトップへ">
+          <img src="./assets/stockmart-bear-logo-transparent.png" alt="ストックマートのクマちゃんロゴ" />
+          <span>
+            <small>Stockmart automation system</small>
+            <strong>クマちゃんシステム</strong>
+          </span>
+        </a>
+        <nav class="sys-tabs" aria-label="画面切替">
+          <a href="./index.html">仕入れ指数</a>
+          <a href="./ocr.html">在庫管理</a>
+          <a class="is-active" href="./system-proposal.html" aria-current="page">クマちゃん</a>
+          <a href="./airregi-integration.html">エアレジ連携</a>
+        </nav>
+      </header>
+
+      <section class="sys-hero" aria-labelledby="sys-title">
+        <figure class="hero-image">
+          <img src="./assets/kuma-system-ai-advantage.png" alt="レシートOCR、商品マスター、POS、顧客LINE、販売予測、多店舗展開をAIでつなぐクマちゃんシステムの利用イメージ" />
+        </figure>
+        <div class="hero-copy">
+          <p class="hero-ai-message">競合の追随を許さないAIシステム化</p>
+          <p class="eyebrow">ストックマート向けかんたん業務自動化</p>
+          <h1 id="sys-title">クマちゃんシステム</h1>
+          <p class="hero-lead">仕入れ、在庫、販売予想、顧客LINE、会計資料をAIでつなぎ、コスト削減と店舗拡大まで見える化します。</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#features">画面イメージを見る</a>
+            <a class="button secondary" href="#savings">削減効果を見る</a>
+            <a class="button secondary" href="./airregi-integration.html">エアレジ連携を見る</a>
+          </div>
+        </div>
+        <div class="hero-benefits" aria-label="導入で得られる5大メリット">
+          <p class="benefit-kicker">導入で得られる5大メリット</p>
+          <div class="hero-metrics">
+            <article>
+              <small>01</small>
+              <strong>コスト削減</strong>
+              <span>税理士費用と入力工数を下げる</span>
+            </article>
+            <article>
+              <small>02</small>
+              <strong>従業員負担軽減</strong>
+              <span>手入力を確認作業に変える</span>
+            </article>
+            <article>
+              <small>03</small>
+              <strong>間違い防止</strong>
+              <span>OCR、JAN、税率を紐づける</span>
+            </article>
+            <article>
+              <small>04</small>
+              <strong>他社流入防止</strong>
+              <span>顧客接点と商品データを自社資産へ</span>
+            </article>
+            <article>
+              <small>05</small>
+              <strong>店舗数拡大</strong>
+              <span>同じ仕組みを多店舗へ横展開</span>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section impact-section" aria-labelledby="impact-title">
+        <div class="section-head">
+          <p class="eyebrow">今回伝えたいこと</p>
+          <h2 id="impact-title"><span class="phrase">手入力を、</span><span class="phrase">確認作業へ。</span></h2>
+        </div>
+        <figure class="impact-image">
+          <img src="./assets/kuma-system-ocr-check-flow.png" alt="レシート写真からOCR、商品マスター、JANラベル、粗利確認まで自動で流れるクマちゃんシステムのイメージ" loading="lazy" decoding="async" />
+        </figure>
+        <div class="impact-grid">
+          <article>
+            <span>楽になる</span>
+            <h3>レシート入力を確認作業へ</h3>
+            <p>写真とOCRで、商品行を候補化。</p>
+          </article>
+          <article>
+            <span>強くなる</span>
+            <h3>商品マスターとJANを整備</h3>
+            <p>仕入商品と販売SKUを紐づけ。</p>
+          </article>
+          <article>
+            <span>迷わない</span>
+            <h3>確認ボタン中心の画面</h3>
+            <p>現場は確認・修正・出力だけ。</p>
+          </article>
+          <article>
+            <span>増やす</span>
+            <h3>イベントから販売予想</h3>
+            <p>明日の仕入れ候補を先に見る。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section simple-section" aria-labelledby="simple-title">
+        <div class="section-head">
+          <p class="eyebrow">画面コンセプト</p>
+          <h2 id="simple-title"><span class="phrase">とにかく簡単。</span><span class="phrase">とにかく楽。</span></h2>
+        </div>
+        <div class="simple-grid">
+          <article>
+            <span>1</span>
+            <h3>送るだけ</h3>
+            <p>買い出し後はLINEにレシート写真を送るだけ。</p>
+          </article>
+          <article>
+            <span>2</span>
+            <h3>見るだけ</h3>
+            <p>候補が並び、間違いだけ直して確認。</p>
+          </article>
+          <article>
+            <span>3</span>
+            <h3>押すだけ</h3>
+            <p>AirレジCSV、棚卸、月次資料をワンタップ出力。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section compare-section" aria-labelledby="compare-title">
+        <div class="compare-copy">
+          <p class="eyebrow">現在の運用と新運用</p>
+          <h2 id="compare-title"><span class="phrase">紙の山から、</span><span class="phrase">店舗の司令塔へ。</span></h2>
+        </div>
+        <figure class="compare-image">
+          <img src="./assets/kuma-system-before-after.png" alt="紙のレシートと手入力が中心の現在運用から、OCRと在庫ダッシュボードを使う新運用へ変わる比較イメージ" />
+          <figcaption>
+            <span>現在: 手入力、転記、確認待ち</span>
+            <span>新運用: OCR、在庫、粗利、資料化</span>
+          </figcaption>
+        </figure>
+      </section>
+
+      <section class="section flow-section" aria-labelledby="flow-title">
+        <div class="section-head">
+          <p class="eyebrow">業務の流れ</p>
+          <h2 id="flow-title"><span class="phrase">仕入れた瞬間から、</span><span class="phrase">販売後の資料まで</span><span class="phrase">つなげる。</span></h2>
+        </div>
+        <div class="flow-lane" aria-label="クマちゃんシステムの流れ">
+          <article>
+            <span>01</span>
+            <strong>コストコ仕入れ</strong>
+            <p>レシート写真をLINE送信。店舗が入荷予定を先に把握。</p>
+          </article>
+          <article>
+            <span>02</span>
+            <strong>OCR・一次確認</strong>
+            <p>レシートコード、商品名、数量、税率を読み取り候補化。</p>
+          </article>
+          <article>
+            <span>03</span>
+            <strong>商品紐づけ</strong>
+            <p>仕入商品を小分けSKU、セット商品、JANへ変換。</p>
+          </article>
+          <article>
+            <span>04</span>
+            <strong>Airレジ販売</strong>
+            <p>商品・JAN・売価・税率・在庫をCSV連携から開始。</p>
+          </article>
+          <article>
+            <span>05</span>
+            <strong>月次資料</strong>
+            <p>粗利、税率別、freee、税理士提出資料をまとめる。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section dashboard-section" aria-labelledby="dashboard-title">
+        <figure class="dashboard-image">
+          <img src="./assets/kuma-system-dashboard.png" alt="仕入れOCR、商品紐づけ、在庫、粗利、税率別集計を一画面で確認する管理ダッシュボードのイメージ" />
+        </figure>
+        <div class="dashboard-copy">
+          <p class="eyebrow">管理画面イメージ</p>
+          <h2 id="dashboard-title"><span class="phrase">店長が見るべき</span><span class="phrase">数字だけを、</span><span class="phrase">1画面に。</span></h2>
+          <div class="screen-mock" aria-label="管理画面の数値例">
+            <div class="mock-top"><span>本日の仕入れ</span><strong>要確認 6件</strong></div>
+            <div class="mock-grid">
+              <article><small>OCR読取</small><strong>48行</strong></article>
+              <article><small>商品紐づけ</small><strong>92%</strong></article>
+              <article><small>粗利見込み</small><strong>38.4%</strong></article>
+              <article><small>AirレジCSV</small><strong>出力可</strong></article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section demand-section" aria-labelledby="demand-title">
+        <div class="demand-copy">
+          <p class="eyebrow">イベント販売予想</p>
+          <h2 id="demand-title"><span class="phrase">近隣イベントから、</span><span class="phrase">明日売れそうな商品を</span><span class="phrase">先に見る。</span></h2>
+          <p>公式店舗ページの店舗、天気、曜日、祝日、近隣イベント候補、販売実績を合わせて仕入れ指数を出します。</p>
+          <div class="demand-tags">
+            <span>学校行事</span>
+            <span>商業施設イベント</span>
+            <span>天気</span>
+            <span>曜日</span>
+            <span>販売実績</span>
+            <span>SNS話題量</span>
+          </div>
+        </div>
+        <figure class="demand-image">
+          <img src="./assets/kuma-system-demand-forecast.png" alt="近隣イベント、天気、販売実績から翌日の仕入れ数量を予想する管理画面イメージ" />
+        </figure>
+      </section>
+
+      <section id="features" class="section feature-section" aria-labelledby="feature-title">
+        <div class="section-head">
+          <p class="eyebrow">機能カタログ</p>
+          <h2 id="feature-title"><span class="phrase">主な機能。</span></h2>
+        </div>
+        <div class="feature-grid">
+          <article>
+            <figure class="feature-thumb">
+              <img src="./assets/feature-line-purchase.png" alt="LINEに仕入れ写真を送ると店舗側の準備画面に反映されるイメージ" loading="lazy" decoding="async" />
+            </figure>
+            <div class="feature-body">
+              <span>01</span>
+              <h3>LINE仕入れ連絡</h3>
+              <p>買った直後に写真共有。店舗が先に準備。</p>
+            </div>
+          </article>
+          <article>
+            <figure class="feature-thumb">
+              <img src="./assets/feature-receipt-ocr.png" alt="レシート画像から商品コードや数量を読み取って確認する画面イメージ" loading="lazy" decoding="async" />
+            </figure>
+            <div class="feature-body">
+              <span>02</span>
+              <h3>レシートOCR</h3>
+              <p>コード、商品名、数量、税率を読み取り。</p>
+            </div>
+          </article>
+          <article>
+            <figure class="feature-thumb">
+              <img src="./assets/feature-product-master.png" alt="仕入れ商品と販売SKUを線で紐づける商品マスター画面イメージ" loading="lazy" decoding="async" />
+            </figure>
+            <div class="feature-body">
+              <span>03</span>
+              <h3>商品マスター</h3>
+              <p>仕入商品と販売SKUを紐づけ。</p>
+            </div>
+          </article>
+          <article>
+            <figure class="feature-thumb">
+              <img src="./assets/feature-portion-cost.png" alt="大容量商品を小分けして原価と包材費を計算する画面イメージ" loading="lazy" decoding="async" />
+            </figure>
+            <div class="feature-body">
+              <span>04</span>
+              <h3>小分け原価</h3>
+              <p>分割、混合、セット、包材費を計算。</p>
+            </div>
+          </article>
+          <article>
+            <figure class="feature-thumb">
+              <img src="./assets/feature-jan-barcode.png" alt="商品ラベルとバーコードを印刷して商品登録する画面イメージ" loading="lazy" decoding="async" />
+            </figure>
+            <div class="feature-body">
+              <span>05</span>
+              <h3>JAN・バーコード</h3>
+              <p>自社SKU、JAN、Airレジ商品を対応。</p>
+            </div>
+          </article>
+          <article>
+            <figure class="feature-thumb">
+              <img src="./assets/feature-airregi-csv.png" alt="管理画面からAirレジへ商品データをCSV連携するイメージ" loading="lazy" decoding="async" />
+            </figure>
+            <div class="feature-body">
+              <span>06</span>
+              <h3>AirレジCSV</h3>
+              <p>商品、売価、税率、在庫を受け渡し。</p>
+            </div>
+          </article>
+          <article>
+            <figure class="feature-thumb">
+              <img src="./assets/feature-margin-tax.png" alt="粗利、利益率、税率別の月次集計を確認するダッシュボードイメージ" loading="lazy" decoding="async" />
+            </figure>
+            <div class="feature-body">
+              <span>07</span>
+              <h3>粗利・税率別集計</h3>
+              <p>軽減税率、通常税率、利益率を月次化。</p>
+            </div>
+          </article>
+          <article>
+            <figure class="feature-thumb">
+              <img src="./assets/feature-event-forecast.png" alt="天気と地域イベントを見ながら翌日の仕入れを判断する画面イメージ" loading="lazy" decoding="async" />
+            </figure>
+            <div class="feature-body">
+              <span>08</span>
+              <h3>イベント販売予想</h3>
+              <p>地域需要から翌日仕入れを提案。</p>
+            </div>
+          </article>
+          <article>
+            <figure class="feature-thumb">
+              <img src="./assets/feature-freee-tax.png" alt="証憑、仕入れ、売上、棚卸をまとめて税理士確認に渡す画面イメージ" loading="lazy" decoding="async" />
+            </figure>
+            <div class="feature-body">
+              <span>09</span>
+              <h3>freee・税理士資料</h3>
+              <p>仕入れ、売上、棚卸、証憑を整理。</p>
+            </div>
+          </article>
+          <article>
+            <figure class="feature-thumb">
+              <img src="./assets/feature-customer-line.png" alt="顧客がLINEアプリから商品リクエストや入荷通知を受け取るイメージ" loading="lazy" decoding="async" />
+            </figure>
+            <div class="feature-body">
+              <span>10</span>
+              <h3>顧客LINEアプリ</h3>
+              <p>商品リクエスト、予約、入荷通知へ。</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section customer-section" aria-labelledby="customer-title">
+        <div class="customer-copy">
+          <p class="eyebrow">顧客LINEアプリ</p>
+          <h2 id="customer-title"><span class="phrase">欲しい商品を、</span><span class="phrase">仕入れ判断へ</span><span class="phrase">つなげる。</span></h2>
+          <div class="customer-tags">
+            <span>商品リクエスト</span>
+            <span>入荷通知</span>
+            <span>取り置き</span>
+            <span>会員証</span>
+            <span>ポイント</span>
+            <span>チラシ配信</span>
+          </div>
+        </div>
+        <figure class="customer-image">
+          <img src="./assets/kuma-system-line-request.png" alt="顧客がLINEアプリで商品リクエストを行い、店舗側が仕入れ候補として確認するイメージ" />
+        </figure>
+      </section>
+
+      <section class="section expansion-section" aria-labelledby="expansion-title">
+        <figure class="expansion-image">
+          <img src="./assets/kuma-system-report-expansion.png" alt="月次資料、税理士確認、顧客LINE、販売予想、多店舗展開を同じ仕組みで管理するイメージ" loading="lazy" decoding="async" />
+        </figure>
+        <div class="expansion-copy">
+          <p class="eyebrow">AIで広がる運用</p>
+          <h2 id="expansion-title"><span class="phrase">資料作成から、</span><span class="phrase">店舗数拡大まで。</span></h2>
+          <p>月次資料、顧客接点、販売予想を同じ仕組みに集約。1店舗で整えた型を、多店舗へ横展開できます。</p>
+          <div class="expansion-tags">
+            <span>月次資料</span>
+            <span>税理士確認</span>
+            <span>顧客データ</span>
+            <span>多店舗展開</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section start-section" aria-labelledby="start-title">
+        <div class="section-head">
+          <p class="eyebrow">導入の始め方</p>
+          <h2 id="start-title"><span class="phrase">まずは1店舗の</span><span class="phrase">実データで、</span><span class="phrase">現場に合う形へ</span><span class="phrase">整える。</span></h2>
+        </div>
+        <ol class="start-list">
+          <li><span>Step 1</span><strong>実レシートOCR検証</strong></li>
+          <li><span>Step 2</span><strong>商品マスター設計</strong></li>
+          <li><span>Step 3</span><strong>AirレジCSV確認</strong></li>
+          <li><span>Step 4</span><strong>粗利・税率別集計</strong></li>
+          <li><span>Step 5</span><strong>イベント仕入れ予想</strong></li>
+        </ol>
+      </section>
+
+      <section class="section check-section" aria-labelledby="check-title">
+        <div>
+          <p class="eyebrow">先に必要な資料</p>
+          <h2 id="check-title"><span class="phrase">削減効果を</span><span class="phrase">見える化するために、</span><span class="phrase">先に確認するもの。</span></h2>
+        </div>
+        <ul>
+          <li>1か月のコストコレシート枚数</li>
+          <li>1枚あたりの商品行数</li>
+          <li>レシート入力にかかる時間</li>
+          <li>Airレジの商品・売上CSV</li>
+          <li>税理士に渡している資料一式</li>
+          <li>店舗別のイベント販売実績</li>
+        </ul>
+      </section>
+
+      <section id="savings" class="section savings-section" aria-labelledby="savings-title">
+        <div class="savings-main">
+          <p class="eyebrow">最後に見る削減効果</p>
+          <h2 id="savings-title"><span class="phrase">年間約182.4万円の</span><span class="phrase">固定費・入力工数を</span><span class="phrase">削減。</span></h2>
+          <p>税理士は最終チェックとfreee入力確認に絞り、社内作業は手入力から最終チェック中心へ移します。</p>
+        </div>
+        <div class="savings-grid">
+          <article>
+            <small>税理士費用</small>
+            <strong>10万円→2万円/月</strong>
+            <span>月8万円削減、年間96万円削減</span>
+          </article>
+          <article>
+            <small>社内入力作業</small>
+            <strong>100%→20%</strong>
+            <span>60分/日から12分/日へ。時給3,000円、30日換算で年間86.4万円削減</span>
+          </article>
+          <article class="total">
+            <small>年間削減見込み</small>
+            <strong>約182.4万円</strong>
+            <span>税理士費用96万円 + 入力工数86.4万円</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="final-section" aria-labelledby="final-title">
+        <p class="eyebrow">Next Action</p>
+        <h2 id="final-title"><span class="phrase">クマちゃんシステムで、</span><span class="phrase">現場はもっと</span><span class="phrase">楽になる。</span></h2>
+        <p>LINE・OCR・JAN・予約に、税理士資料、Airレジ連携、イベント販売予想までまとめて使える統合版です。</p>
+        <a class="button final-button" href="./ocr.html">在庫管理デモを見る</a>
+      </section>
+    </main>
+  </body>
+</html>

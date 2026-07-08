@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ストックマート 仕入れ指数</title>
+    <link rel="icon" href="./assets/stockmart-bear-logo-transparent.png" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="app-header">
+        <img class="brand-bear" src="./assets/stockmart-bear-logo-transparent.png" alt="stockmart" />
+        <div>
+          <p class="eyebrow">Stockmart Demand Scout</p>
+          <h1>仕入れ指数</h1>
+        </div>
+      </header>
+
+      <nav class="app-tabs" aria-label="画面切替">
+        <a class="app-tab is-active" href="./index.html" aria-current="page">仕入れ指数</a>
+        <a class="app-tab" href="./ocr.html">在庫管理</a>
+        <a class="app-tab" href="./system-proposal.html">クマちゃん</a>
+        <a class="app-tab" href="./airregi-integration.html">エアレジ連携</a>
+      </nav>
+
+      <div class="bear-stage" aria-hidden="true">
+        <div class="pixel-bear-sprite"></div>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <section class="selector-card">
+        <div class="store-title-row">
+          <div>
+            <p class="label">選択店舗</p>
+            <h2 id="storeHeroName" class="store-hero-name">読み込み中</h2>
+            <p id="storeHeroMeta" class="store-meta">店舗情報を読み込み中</p>
+          </div>
+          <span id="placeText" class="store-badge">店舗周辺</span>
+        </div>
+        <div class="store-control-row">
+          <label>
+            <span class="label">店舗変更</span>
+            <select id="storeSelect"></select>
+          </label>
+          <button id="researchButton" class="primary-button" type="button">調査する</button>
+        </div>
+      </section>
+
+      <section id="message" class="message">店舗を読み込み中です。</section>
+
+      <section class="index-card" data-tone="normal">
+        <div class="index-head">
+          <span class="label">明日・明後日の目安</span>
+          <strong>仕入れ判断</strong>
+        </div>
+        <div class="index-main">
+          <div class="score-ring">
+            <span id="indexScore">--</span>
+            <small>/100</small>
+          </div>
+          <div>
+            <p class="label">仕入れ</p>
+            <h2 id="indexLabel">調査待ち</h2>
+            <p id="indexReason">店舗を選んで調査してください。</p>
+          </div>
+        </div>
+        <div class="meter" aria-hidden="true"><span id="indexMeter"></span></div>
+      </section>
+
+      <section class="summary-card">
+        <p class="label">要約</p>
+        <div class="summary-block summary-title-block">
+          <span>表題</span>
+          <h2 id="headline">まだ調査していません</h2>
+        </div>
+        <div class="summary-block summary-body-block">
+          <span>本文</span>
+          <div id="summaryText" class="summary-body-text">天気と近隣イベントから、まず「多め・通常・少なめ」を出します。</div>
+        </div>
+        <div class="summary-block summary-action-block">
+          <span>今日の対応</span>
+          <p id="todayAction" class="action-copy"></p>
+        </div>
+      </section>
+
+      <section class="quick-grid">
+        <article class="mini-card">
+          <span aria-hidden="true">☀️</span>
+          <div>
+            <p class="label">明日</p>
+            <strong id="tomorrowWeather">-</strong>
+            <p id="tomorrowDetail">-</p>
+            <button id="weatherDetailButton" class="mini-action" type="button">天気詳細</button>
+          </div>
+        </article>
+        <article class="mini-card">
+          <span aria-hidden="true">🎪</span>
+          <div>
+            <p class="label">イベント</p>
+            <strong id="eventCount">0件</strong>
+            <p id="eventMeta">-</p>
+            <button id="eventDetailButton" class="mini-action" type="button">カレンダー</button>
+          </div>
+        </article>
+      </section>
+
+      <details id="detailBlock" class="detail-block">
+        <summary>天気・イベント・根拠を開く</summary>
+        <div class="detail-inner">
+          <section>
+            <h3>仕入れヒント</h3>
+            <div id="stockList" class="simple-list empty">まだ調査結果がありません。</div>
+          </section>
+          <section>
+            <h3>判断材料</h3>
+            <div id="signalsList" class="simple-list empty">まだ調査結果がありません。</div>
+          </section>
+          <section id="eventsSection">
+            <h3>イベントカレンダー</h3>
+            <div id="eventsList" class="event-list empty">まだ調査結果がありません。</div>
+          </section>
+          <section id="weatherSection">
+            <h3>天気一覧</h3>
+            <div id="weatherList" class="weather-list empty">まだ調査結果がありません。</div>
+          </section>
+          <section>
+            <h3>店舗情報</h3>
+            <article id="storeCard" class="store-card">
+              <div class="store-thumb"></div>
+              <div>
+                <p class="label">店舗</p>
+                <h4 id="storeName">読み込み中</h4>
+                <p id="storeDetail">公式店舗ページを確認しています。</p>
+                <div class="store-actions">
+                  <a id="storeLink" class="open-link" href="https://stockmart-sp.com/store/" target="_blank" rel="noreferrer">公式</a>
+                  <a id="mapLink" class="open-link" href="https://stockmart-sp.com/store/" target="_blank" rel="noreferrer">地図</a>
+                </div>
+              </div>
+            </article>
+          </section>
+        </div>
+      </details>
+
+    </main>
+
+    <script src="./app.js?v=20260627-no-mobile-truncate"></script>
+  </body>
+</html>

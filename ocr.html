@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ストックマート 在庫管理</title>
+    <link rel="icon" href="./assets/stockmart-bear-logo-transparent.png" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="app-header">
+        <img class="brand-bear" src="./assets/stockmart-bear-logo-transparent.png" alt="stockmart" />
+        <div>
+          <p class="eyebrow">Stockmart Inventory Scout</p>
+          <h1>在庫管理</h1>
+        </div>
+      </header>
+
+      <nav class="app-tabs" aria-label="画面切替">
+        <a class="app-tab" href="./index.html">仕入れ指数</a>
+        <a class="app-tab is-active" href="./ocr.html" aria-current="page">在庫管理</a>
+        <a class="app-tab" href="./system-proposal.html">クマちゃん</a>
+        <a class="app-tab" href="./airregi-integration.html">エアレジ連携</a>
+      </nav>
+
+      <div class="bear-stage" aria-hidden="true">
+        <div class="pixel-bear-sprite"></div>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <section class="summary-card">
+        <p class="label">手入力を、確認作業へ</p>
+        <h2>レシートを送って、見て、押すだけ</h2>
+        <p>OCRが商品番号を読み、<strong id="masterSummary">商品マスター</strong>と照合して商品名を自動補正します。あなたは確認して確定するだけです。</p>
+      </section>
+
+      <section class="dashboard-card">
+        <div class="upload-head">
+          <div>
+            <p class="label">店長ダッシュボード</p>
+            <h2>見るべき数字だけを、1画面に</h2>
+          </div>
+          <label class="margin-select-label">想定粗利率
+            <select id="marginRateSelect">
+              <option value="0.2">20%</option>
+              <option value="0.3" selected>30%</option>
+              <option value="0.4">40%</option>
+            </select>
+          </label>
+        </div>
+        <div id="dashboardGrid" class="dashboard-grid">読み込み中…</div>
+        <p class="dashboard-note">参考仕入額は商品マスターの購入時価格ベースの概算です。粗利は想定粗利率での試算です。</p>
+      </section>
+
+      <section class="upload-card">
+        <div class="upload-head">
+          <div>
+            <p class="label">1. 送るだけ</p>
+            <h2>レシート画像を選ぶ</h2>
+          </div>
+        </div>
+        <div class="upload-controls">
+          <label class="file-button">
+            <input id="receiptUploadInput" type="file" accept="image/*" />
+            画像を選ぶ
+          </label>
+          <button id="receiptUploadButton" class="primary-button" type="button" disabled>OCRで読み込む</button>
+        </div>
+        <p id="receiptUploadStatus" class="upload-status">画像を選ぶと読み込みできます。</p>
+        <div id="receiptUploadPreview" class="receipt-upload-preview" hidden></div>
+        <div id="receiptUploadResult" class="upload-result empty">まだ画像を読み込んでいません。</div>
+      </section>
+
+      <section id="confirmCard" class="confirm-card" hidden>
+        <div class="upload-head">
+          <div>
+            <p class="label">2. 見るだけ</p>
+            <h2>読み取り結果を確認</h2>
+          </div>
+          <span id="confirmSummary" class="confirm-summary"></span>
+        </div>
+        <div id="confirmList" class="confirm-list"></div>
+        <div class="confirm-tools">
+          <button id="confirmAddRowButton" class="mini-action" type="button">＋ 行を追加(読み漏れを補う)</button>
+          <p id="confirmTotal" class="confirm-total"></p>
+        </div>
+        <div class="confirm-actions">
+          <button id="confirmButton" class="primary-button" type="button">3. 押すだけ — 確定して在庫へ</button>
+          <button id="confirmCancelButton" class="mini-action" type="button">やり直す</button>
+        </div>
+        <p id="confirmStatus" class="upload-status"></p>
+      </section>
+
+      <section class="product-db-card">
+        <div class="product-db-head">
+          <div>
+            <p class="label">コストコ仮在庫DB</p>
+            <h2 id="costcoProductCount">0件</h2>
+          </div>
+          <div class="product-db-actions">
+            <a id="airregiCsvButton" class="mini-action" href="/api/airregi-csv" download>AirレジCSV出力</a>
+            <button id="loadCostcoProductsButton" class="mini-action" type="button">再読込</button>
+          </div>
+        </div>
+        <div id="costcoProductList" class="product-list empty">商品DBを読み込み中です。</div>
+        <div class="ocr-proof">
+          <div class="ocr-proof-head">
+            <div>
+              <p class="label">OCR実績</p>
+              <strong id="ocrProofSummary">読み込み中</strong>
+            </div>
+          </div>
+          <div class="ocr-flow">
+            <span>レシート画像</span>
+            <span>OCR読み取り</span>
+            <span>マスター照合</span>
+            <span>確認・確定</span>
+            <span>AirレジCSV</span>
+          </div>
+          <details class="source-proof">
+            <summary>参考レシートを見る</summary>
+            <div id="ocrSourceList" class="source-list empty">取得元を読み込み中です。</div>
+          </details>
+        </div>
+      </section>
+    </main>
+
+    <script src="./ocr.js?v=20260707-review-flow"></script>
+  </body>
+</html>
