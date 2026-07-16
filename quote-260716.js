@@ -173,126 +173,92 @@ const PRODUCTS = [
   }
 ];
 
-const productSelect = document.querySelector("#productSelect");
-const variantSelect = document.querySelector("#variantSelect");
-const selectedCode = document.querySelector("#selectedCode");
-const selectedName = document.querySelector("#selectedName");
-const selectedVariant = document.querySelector("#selectedVariant");
-const selectedQuantity = document.querySelector("#selectedQuantity");
-const selectedPrice = document.querySelector("#selectedPrice");
-const priceGrid = document.querySelector("#priceGrid");
-const catalogList = document.querySelector("#catalogList");
-
-let selectedQuantityIndex = 1;
+const apparelPriceList = document.querySelector("#apparelPriceList");
 
 const formatYen = (value) => {
   if (value === null) return "個別確認";
   return "¥" + new Intl.NumberFormat("ja-JP").format(value);
 };
 
-const currentProduct = () => PRODUCTS[Number(productSelect.value)];
-const currentVariant = () => currentProduct().variants[Number(variantSelect.value)];
-
-const renderProductOptions = () => {
-  PRODUCTS.forEach((product, index) => {
-    const option = document.createElement("option");
-    option.value = String(index);
-    option.textContent = "品番 " + product.code + "｜" + product.name;
-    productSelect.append(option);
-  });
-};
-
-const renderVariantOptions = () => {
-  const product = currentProduct();
-  variantSelect.replaceChildren();
-
-  product.variants.forEach((variant, index) => {
-    const option = document.createElement("option");
-    option.value = String(index);
-    option.textContent = variant.size + "｜" + variant.color;
-    variantSelect.append(option);
-  });
-};
-
-const updateSelectedPrice = () => {
-  const product = currentProduct();
-  const variant = currentVariant();
-  const price = variant.prices[selectedQuantityIndex];
-
-  selectedCode.textContent = "品番 " + product.code;
-  selectedName.textContent = product.name;
-  selectedVariant.textContent = variant.size + " ／ " + variant.color;
-  selectedQuantity.textContent = QUANTITIES[selectedQuantityIndex] + "枚の場合";
-  selectedPrice.textContent = formatYen(price);
-};
-
-const renderPriceGrid = () => {
-  const variant = currentVariant();
-  priceGrid.replaceChildren();
-
-  QUANTITIES.forEach((quantity, index) => {
-    const price = variant.prices[index];
-    const button = document.createElement("button");
-    const quantityLabel = document.createElement("span");
-    const priceLabel = document.createElement("strong");
-
-    button.type = "button";
-    button.className = "quantity-option";
-    button.dataset.index = String(index);
-    button.setAttribute("aria-pressed", index === selectedQuantityIndex ? "true" : "false");
-
-    if (index === selectedQuantityIndex) button.classList.add("is-selected");
-    if (price === null) button.disabled = true;
-
-    quantityLabel.textContent = quantity + "枚";
-    priceLabel.textContent = formatYen(price);
-    button.append(quantityLabel, priceLabel);
-    priceGrid.append(button);
-  });
-
-  if (variant.prices[selectedQuantityIndex] === null) {
-    selectedQuantityIndex = variant.prices.findIndex((price) => price !== null);
-    renderPriceGrid();
-    return;
-  }
-
-  updateSelectedPrice();
-};
-
-const renderCatalog = () => {
+const renderApparelPriceList = () => {
   PRODUCTS.forEach((product) => {
-    const item = document.createElement("div");
+    const article = document.createElement("article");
+    const header = document.createElement("header");
     const code = document.createElement("span");
-    const name = document.createElement("span");
+    const name = document.createElement("h3");
     const count = document.createElement("span");
+    const table = document.createElement("div");
+    const tableHead = document.createElement("div");
 
-    item.className = "catalog-item";
-    code.className = "catalog-item-code";
-    name.className = "catalog-item-name";
-    count.className = "catalog-item-count";
+    article.className = "apparel-product";
+    header.className = "apparel-product-header";
+    code.className = "apparel-product-code";
+    count.className = "apparel-product-count";
+    table.className = "apparel-table";
+    tableHead.className = "apparel-table-head";
 
-    code.textContent = product.code;
+    table.setAttribute("role", "table");
+    table.setAttribute("aria-label", "品番 " + product.code + " " + product.name + " 数量別価格表");
+    tableHead.setAttribute("role", "row");
+
+    code.textContent = "品番 " + product.code;
     name.textContent = product.name;
     count.textContent = product.variants.length + "仕様";
-    item.append(code, name, count);
-    catalogList.append(item);
+    header.append(code, name, count);
+
+    ["サイズ", "カラー", ...QUANTITIES.map((quantity) => quantity + "枚")].forEach((label) => {
+      const cell = document.createElement("span");
+      cell.setAttribute("role", "columnheader");
+      cell.textContent = label;
+      tableHead.append(cell);
+    });
+    table.append(tableHead);
+
+    product.variants.forEach((variant) => {
+      const row = document.createElement("div");
+      row.className = "apparel-data-row";
+      row.setAttribute("role", "row");
+
+      [
+        ["サイズ", variant.size],
+        ["カラー", variant.color]
+      ].forEach(([label, value]) => {
+        const cell = document.createElement("div");
+        const fieldLabel = document.createElement("span");
+        const fieldValue = document.createElement("strong");
+
+        cell.className = "variant-cell";
+        cell.setAttribute("role", "cell");
+        fieldLabel.className = "field-label";
+        fieldValue.className = "variant-value";
+        fieldLabel.textContent = label;
+        fieldValue.textContent = value;
+        cell.append(fieldLabel, fieldValue);
+        row.append(cell);
+      });
+
+      variant.prices.forEach((price, index) => {
+        const cell = document.createElement("div");
+        const quantity = document.createElement("span");
+        const value = document.createElement("strong");
+
+        cell.className = "price-cell";
+        if (price === null) cell.classList.add("is-unavailable");
+        cell.setAttribute("role", "cell");
+        quantity.className = "price-quantity";
+        quantity.textContent = QUANTITIES[index] + "枚";
+        value.textContent = formatYen(price);
+        cell.append(quantity, value);
+        row.append(cell);
+      });
+
+      table.append(row);
+    });
+
+    article.append(header, table);
+    apparelPriceList.append(article);
   });
 };
-
-productSelect.addEventListener("change", () => {
-  variantSelect.value = "0";
-  renderVariantOptions();
-  renderPriceGrid();
-});
-
-variantSelect.addEventListener("change", renderPriceGrid);
-
-priceGrid.addEventListener("click", (event) => {
-  const button = event.target.closest(".quantity-option");
-  if (!button || button.disabled) return;
-  selectedQuantityIndex = Number(button.dataset.index);
-  renderPriceGrid();
-});
 
 document.querySelector("#printButton").addEventListener("click", () => window.print());
 
@@ -324,9 +290,4 @@ dialog.addEventListener("close", () => {
   if (previousFocus) previousFocus.focus();
 });
 
-renderProductOptions();
-productSelect.value = "0";
-renderVariantOptions();
-variantSelect.value = "0";
-renderPriceGrid();
-renderCatalog();
+renderApparelPriceList();
