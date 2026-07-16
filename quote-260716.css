@@ -443,6 +443,35 @@ dd {
   white-space: nowrap;
 }
 
+.mix-rationale {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  align-items: center;
+  gap: 64px;
+  margin-top: 44px;
+  padding: 30px 0;
+  border-top: 2px solid var(--accent);
+  border-bottom: 1px solid var(--ink);
+}
+
+.mix-rationale-label {
+  margin-bottom: 8px;
+  color: var(--accent);
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.mix-rationale h3 {
+  margin: 0;
+  font-size: clamp(1.35rem, 2.2vw, 2rem);
+}
+
+.mix-rationale > p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
 .inline-note,
 .table-note,
 .apparel-list-note {
@@ -483,11 +512,38 @@ dd {
 }
 
 .goods-visual {
+  position: relative;
   margin: 0;
   overflow: clip;
   border: 1px solid var(--line);
   background: #eee7dd;
   aspect-ratio: 3 / 2;
+}
+
+.design-image-label {
+  position: absolute;
+  z-index: 3;
+  top: 10px;
+  right: 10px;
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  padding: 5px 9px;
+  color: var(--white);
+  background: rgba(27, 25, 22, 0.78);
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 0.64rem;
+  font-style: normal;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.hero-design-label {
+  top: 24px;
+  right: max(24px, calc((100% - var(--max)) / 2));
 }
 
 .goods-visual img {
@@ -664,6 +720,11 @@ dd {
   font-size: 0.76rem;
   font-weight: 800;
   text-align: center;
+}
+
+.gallery-item .design-image-label {
+  top: 12px;
+  right: 12px;
 }
 
 .section-apparel {
@@ -1128,6 +1189,11 @@ dd {
     gap: 20px;
   }
 
+  .mix-rationale {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
   .goods-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1247,6 +1313,11 @@ dd {
 
   .hero-image {
     object-position: 67% center;
+  }
+
+  .hero-design-label {
+    top: 14px;
+    right: 14px;
   }
 
   .hero-copy {
@@ -1476,6 +1547,7 @@ dd {
 
   .site-header,
   .hero-actions,
+  .hero-design-label,
   .pricing-notice,
   .visual-break,
   .final-cta,
