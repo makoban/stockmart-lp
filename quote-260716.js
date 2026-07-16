@@ -180,6 +180,11 @@ const formatYen = (value) => {
   return "¥" + new Intl.NumberFormat("ja-JP").format(value);
 };
 
+const formatUnitPrice = (total, quantity) => {
+  if (total === null) return "";
+  return "単価：" + new Intl.NumberFormat("ja-JP").format(Math.ceil(total / quantity)) + "円";
+};
+
 const renderApparelPriceList = () => {
   PRODUCTS.forEach((product) => {
     const article = document.createElement("article");
@@ -241,14 +246,18 @@ const renderApparelPriceList = () => {
         const cell = document.createElement("div");
         const quantity = document.createElement("span");
         const value = document.createElement("strong");
+        const unitPrice = document.createElement("span");
 
         cell.className = "price-cell";
         if (price === null) cell.classList.add("is-unavailable");
         cell.setAttribute("role", "cell");
         quantity.className = "price-quantity";
+        unitPrice.className = "unit-price";
         quantity.textContent = QUANTITIES[index] + "枚";
         value.textContent = formatYen(price);
+        unitPrice.textContent = formatUnitPrice(price, QUANTITIES[index]);
         cell.append(quantity, value);
+        if (price !== null) cell.append(unitPrice);
         row.append(cell);
       });
 

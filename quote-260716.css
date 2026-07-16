@@ -467,7 +467,7 @@ dd {
   display: flex;
   flex-direction: column;
   min-width: 0;
-  min-height: 335px;
+  min-height: 540px;
   padding: 34px;
   border-right: 1px solid var(--ink);
   border-bottom: 1px solid var(--ink);
@@ -476,10 +476,39 @@ dd {
 
 .goods-number {
   display: block;
-  margin-bottom: 28px;
+  margin-bottom: 20px;
   color: var(--accent);
   font-size: 0.78rem;
   font-weight: 800;
+}
+
+.goods-visual {
+  margin: 0;
+  overflow: clip;
+  border: 1px solid var(--line);
+  background: #eee7dd;
+  aspect-ratio: 3 / 2;
+}
+
+.goods-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.goods-visual-mix {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 2px;
+}
+
+.goods-visual-mix img:nth-child(-n + 3) {
+  grid-column: span 2;
+}
+
+.goods-visual-mix img:nth-child(n + 4) {
+  grid-column: span 3;
 }
 
 .goods-card h3 {
@@ -761,6 +790,14 @@ dd {
 .price-cell strong {
   font-family: "DM Sans", "Noto Sans JP", sans-serif;
   font-size: 0.82rem;
+  white-space: nowrap;
+}
+
+.unit-price {
+  color: var(--muted);
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 0.64rem;
+  font-weight: 700;
   white-space: nowrap;
 }
 
@@ -1255,7 +1292,7 @@ dd {
   }
 
   .goods-card {
-    min-height: 285px;
+    min-height: 0;
     padding: 28px;
   }
 
@@ -1319,6 +1356,10 @@ dd {
 
   .price-cell strong {
     font-size: 0.86rem;
+  }
+
+  .unit-price {
+    font-size: 0.72rem;
   }
 
   .apparel-price-list {
@@ -1524,6 +1565,10 @@ dd {
   .price-cell strong,
   .price-cell.is-unavailable strong {
     font-size: 6.2pt;
+  }
+
+  .unit-price {
+    font-size: 5.2pt;
   }
 
   .section-flow,
