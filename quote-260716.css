@@ -522,6 +522,36 @@ dd {
   font-size: 0.82rem;
 }
 
+.goods-card > .goods-mix-formula {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 0.72fr);
+  align-items: center;
+  gap: 7px;
+  margin: 0 0 18px;
+  padding: 13px 0;
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  color: var(--ink);
+  font-family: "DM Sans", "Noto Sans JP", sans-serif;
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.goods-mix-formula span {
+  white-space: nowrap;
+}
+
+.goods-mix-formula b {
+  color: var(--accent);
+}
+
+.goods-mix-formula strong {
+  grid-column: 1 / -1;
+  font-size: 1.08rem;
+  text-align: right;
+  white-space: nowrap;
+}
+
 .goods-card dl {
   display: grid;
   gap: 7px;
@@ -564,6 +594,10 @@ dd {
 
 .goods-card-mix {
   background: #f2ece2;
+}
+
+.table-note + .table-note {
+  margin-top: 6px;
 }
 
 .visual-break {
