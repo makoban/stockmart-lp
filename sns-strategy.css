@@ -24,12 +24,14 @@
 }
 
 html {
+  overflow-x: clip;
   scroll-behavior: smooth;
   scroll-padding-top: 116px;
 }
 
 body {
   margin: 0;
+  overflow-x: clip;
   color: var(--ink);
   background: var(--paper);
   font-family: "Noto Sans JP", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -478,6 +480,7 @@ li {
   top: 0;
   z-index: 40;
   padding: 44px 0 8px;
+  overflow-x: clip;
   background: linear-gradient(180deg, var(--paper) 0 72%, rgba(247, 244, 236, 0));
 }
 
@@ -1248,7 +1251,7 @@ a.post-audit-row:hover {
   font-size: 6px;
   font-weight: 900;
   vertical-align: 1px;
-  content: "最高反応";
+  content: "注目投稿";
 }
 
 .content-review-grid {
@@ -1540,6 +1543,7 @@ a.post-audit-row:hover {
 }
 
 .concept-copy {
+  min-width: 0;
   padding: 58px;
 }
 
@@ -1586,6 +1590,7 @@ a.post-audit-row:hover {
 
 .post-formula {
   display: grid;
+  min-width: 0;
   grid-template-columns: repeat(7, auto);
   align-content: center;
   align-items: center;
@@ -2266,44 +2271,6 @@ a.post-audit-row:hover {
   font-size: 8px;
   font-weight: 700;
   line-height: 1.45;
-}
-
-.withdrawn-numbers {
-  display: grid;
-  grid-template-columns: auto auto minmax(0, 1fr);
-  gap: 18px;
-  align-items: center;
-  padding: 17px 20px;
-  margin-top: 14px;
-  border: 1px solid #e5d5c8;
-  border-radius: 17px;
-  background: #fff8f2;
-}
-
-.withdrawn-numbers > span {
-  padding: 6px 9px;
-  border-radius: 999px;
-  color: #8f431e;
-  background: #f9decd;
-  font-size: 8px;
-  font-weight: 900;
-  white-space: nowrap;
-}
-
-.withdrawn-numbers p {
-  display: flex;
-  gap: 10px;
-  margin: 0;
-  color: #9b6e5a;
-  font-size: 11px;
-  font-weight: 800;
-  white-space: nowrap;
-}
-
-.withdrawn-numbers strong {
-  color: #765847;
-  font-size: 9px;
-  line-height: 1.6;
 }
 
 .budget-cards {
@@ -3179,14 +3146,6 @@ a.post-audit-row:hover {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .withdrawn-numbers {
-    grid-template-columns: auto minmax(0, 1fr);
-  }
-
-  .withdrawn-numbers strong {
-    grid-column: 1 / -1;
-  }
-
   .sales-chart {
     padding: 22px 16px;
   }
@@ -3618,20 +3577,6 @@ a.post-audit-row:hover {
     padding: 12px;
   }
 
-  .withdrawn-numbers {
-    grid-template-columns: 1fr;
-    gap: 11px;
-  }
-
-  .withdrawn-numbers strong {
-    grid-column: auto;
-  }
-
-  .withdrawn-numbers p {
-    flex-wrap: wrap;
-    white-space: normal;
-  }
-
   .budget-cards article > strong {
     font-size: 42px;
   }
@@ -3743,7 +3688,7 @@ a.post-audit-row:hover {
   }
 
   .concept-copy h2 {
-    font-size: 30px;
+    font-size: 28px;
   }
 
   .hero-visual {
